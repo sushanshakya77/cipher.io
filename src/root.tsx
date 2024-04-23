@@ -6,13 +6,11 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "ceaserCipher",
-    element: <CaesarCipher />,
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
+    children: [
+      {
+        path: "ceaserCipher",
+        element: <CaesarCipher />,
+      },
+    ],
   },
 ]);
