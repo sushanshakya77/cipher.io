@@ -39,37 +39,52 @@ const CaesarCipher: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="mt-[30px]">
       <h2>Caesar Cipher</h2>
+
       <div>
-        <label className="text-red-500">
-          Input Text:
-          <input
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            className=""
-          />
-        </label>
+        <span className="w-[40px]">Input Text:</span>
+        <input
+          type="text"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          className="border rounded-[6px] "
+        />
       </div>
+
       <div>
-        <label>
-          Shift:
-          <input
-            type="number"
-            value={shift}
-            onChange={(e) => setShift(parseInt(e.target.value))}
-          />
-        </label>
+        <span className="">Shift:</span>
+
+        <input
+          type="number"
+          value={shift}
+          onChange={(e) => setShift(parseInt(e.target.value))}
+          className="border rounded-[6px]"
+        />
       </div>
-      <div>
-        <button onClick={handleEncrypt}>Encrypt</button>
-        <button onClick={handleDecrypt}>Decrypt</button>
+      <div className="flex gap-[20px]">
+        <button
+          className="bg-red-200 rounded-[6px] px-[10px]"
+          onClick={handleEncrypt}
+        >
+          Encrypt
+        </button>
+        <button
+          className="bg-cyan-200 rounded-[6px] px-[10px]"
+          onClick={handleDecrypt}
+        >
+          Decrypt
+        </button>
       </div>
       <div>
         <label>
           Output Text:
-          <input type="text" value={outputText} readOnly />
+          <input
+            type="text"
+            className="bg-green-100 outline-none p-4 rounded-[6px]"
+            value={outputText}
+            readOnly
+          />
         </label>
       </div>
     </div>
