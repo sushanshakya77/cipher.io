@@ -14,7 +14,7 @@ function App() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <a href="/docs">
+              <a href="/ceaserCipher">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Caesar Cipher
                 </NavigationMenuLink>
