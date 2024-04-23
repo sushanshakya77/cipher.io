@@ -6,16 +6,21 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import "./App.css";
+import { Outlet, useLocation } from "react-router-dom";
 
 function App() {
+  const { pathname } = useLocation();
   return (
     <>
       <nav>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <a href="/docs">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <a href="/ceaserCipher">
+                <NavigationMenuLink
+                  active={pathname.includes("ceaserCipher")}
+                  className={navigationMenuTriggerStyle()}
+                >
                   Caesar Cipher
                 </NavigationMenuLink>
               </a>
@@ -30,6 +35,7 @@ function App() {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
+      <Outlet />
     </>
   );
 }
