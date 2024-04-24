@@ -1,44 +1,54 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CipherType } from "@/constants/type";
 import Quiz from "@/view/Quiz";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const CaesarCipher: React.FC = () => {
+const Monoalphabetic = () => {
   const [inputText, setInputText] = useState<string>("");
-  const [shift, setShift] = useState<number>(0);
   const [outputText, setOutputText] = useState<string>("");
+  const [encryptionKey, setEncryptionKey] = useState<string>(
+    "abcdefghijklmnopqrstuvwxyz"
+  );
 
-  const encrypt = (text: string, shift: number): string => {
-    return text
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
+  };
+
+  const handleKeyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEncryptionKey(event.target.value.toLowerCase());
+  };
+
+  const encrypt = (text: string, key: string) => {
+    const normalizedInput = text.toLowerCase().replace(/[^a-z]/g, "");
+    const encryptedText = normalizedInput
       .split("")
-      .map((char: string) => {
-        if (char.match(/[a-z]/i)) {
-          const code: number = char.charCodeAt(0);
-          let shiftedCode: number = code + shift;
-          if (char === char.toLowerCase()) {
-            if (shiftedCode > 122) shiftedCode -= 26;
-            else if (shiftedCode < 97) shiftedCode += 26;
-          } else {
-            if (shiftedCode > 90) shiftedCode -= 26;
-            else if (shiftedCode < 65) shiftedCode += 26;
-          }
-          return String.fromCharCode(shiftedCode);
-        }
-        return char;
+      .map((char) => {
+        const index = "abcdefghijklmnopqrstuvwxyz".indexOf(char);
+        return index !== -1 ? key[index] : char;
       })
       .join("");
+    return encryptedText;
   };
 
-  const decrypt = (text: string, shift: number): string => {
-    return encrypt(text, -shift);
+  const decrypt = (text: string, key: string) => {
+    const decryptedText = text
+      .split("")
+      .map((char) => {
+        const index = key.indexOf(char);
+        return index !== -1 ? "abcdefghijklmnopqrstuvwxyz"[index] : char;
+      })
+      .join("");
+    return decryptedText;
   };
 
-  const handleEncrypt = (): void => {
-    setOutputText(encrypt(inputText, shift));
+  const handleEncrypt = () => {
+    const encryptedText = encrypt(inputText, encryptionKey);
+    setOutputText(encryptedText);
   };
 
-  const handleDecrypt = (): void => {
-    setOutputText(decrypt(inputText, shift));
+  const handleDecrypt = () => {
+    const decryptedText = decrypt(outputText, encryptionKey);
+    setOutputText(decryptedText);
   };
 
   return (
@@ -52,9 +62,10 @@ const CaesarCipher: React.FC = () => {
           <div className="grid grid-cols-2">
             <span className="">Input Text:</span>
             <input
+              id="inputText"
               type="text"
               value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
+              onChange={handleInputChange}
               className="border rounded-[6px] p-1 "
             />
           </div>
@@ -62,9 +73,10 @@ const CaesarCipher: React.FC = () => {
           <div className="grid grid-cols-2">
             <span className="">Shift:</span>
             <input
-              type="number"
-              value={shift}
-              onChange={(e) => setShift(parseInt(e.target.value))}
+              type="text"
+              id="encryptionKey"
+              value={encryptionKey}
+              onChange={handleKeyChange}
               className="border rounded-[6px] p-1"
             />
           </div>
@@ -93,11 +105,11 @@ const CaesarCipher: React.FC = () => {
           </div>
         </TabsContent>
         <TabsContent value="quiz">
-          <Quiz type={CipherType.Caeser} />
+          <Quiz type={CipherType.Monoalphabetic} />
         </TabsContent>
       </Tabs>
     </div>
   );
 };
 
-export default CaesarCipher;
+export default Monoalphabetic;

@@ -5,10 +5,8 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import "./App.css";
 import { Outlet, useLocation } from "react-router-dom";
-import Quiz from "./view/Quiz";
-import { CipherType } from "./constants/type";
+import "./App.css";
 
 function App() {
   const { pathname } = useLocation();
@@ -18,21 +16,25 @@ function App() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuLink
+              href="/ceaserCipher"
               active={pathname.includes("ceaserCipher")}
-              className={navigationMenuTriggerStyle()}
+              className={navigationMenuTriggerStyle() + " cursor-pointer"}
             >
               Caesar Cipher
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              href="/monoalphabetic"
+              active={pathname.includes("monoalphabetic")}
+              className={navigationMenuTriggerStyle() + " cursor-pointer"}
+            >
               Monoalphabetic Cipher
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
       <Outlet />
-      <Quiz type={CipherType.Caeser} />
     </>
   );
 }

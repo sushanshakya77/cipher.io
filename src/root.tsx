@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import CaesarCipher from "./components/enc-dec/CaesarCipher";
 import App from "./App";
+import Monoalphabetic from "./components/enc-dec/Monoalphabetic";
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
       {
         path: "ceaserCipher",
         element: <CaesarCipher />,
+      },
+      {
+        path: "monoalphabetic",
+        element: <Monoalphabetic />,
       },
     ],
   },
