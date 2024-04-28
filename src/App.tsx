@@ -15,7 +15,9 @@ function App() {
       <NavigationMenu className="max-w-full bg-gray-600 flex-[0] py-5 px-20">
         <NavigationMenuList>
           <NavigationMenuItem className="text-white">
-            Cipher Lab
+            <NavigationMenuLink href="/" className="cursor-pointer">
+              Cipher Lab
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
         <div className="grow"></div>
