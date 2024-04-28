@@ -163,7 +163,7 @@ const Quiz = ({ type }: IQuiz) => {
   type;
 
   return (
-    <form onSubmit={handleSubmit} className="w-2/3 space-y-6">
+    <form onSubmit={handleSubmit} className="w-full text-slate-100 space-y-6">
       {questions.length - 1 !== activeQuestion ? (
         <>
           <h4>
@@ -175,10 +175,10 @@ const Quiz = ({ type }: IQuiz) => {
               <div className="flex items-center space-x-2" key={answer}>
                 <RadioGroupItem
                   onClick={() => {
-                    console.log(answer);
                     setValue(answer);
                   }}
                   value={answer}
+                  className="text-slate-100"
                   id={answer}
                 />
                 <Label htmlFor={answer}>{answer}</Label>
@@ -191,10 +191,17 @@ const Quiz = ({ type }: IQuiz) => {
           </Button>
         </>
       ) : (
-        <>
-          <div>Your total point is {collectPoints}🎉</div>
-          <button onClick={() => setActiveQuestion(0)}>Restart</button>
-        </>
+        <div className="flex flex-col space-y-10 text-white w-full">
+          <h1 className="text-center text-xl ">
+            Your total point is {collectPoints} 🎉
+          </h1>
+          <button
+            className="bg-green-600 px-2 py-3 rounded-md"
+            onClick={() => setActiveQuestion(0)}
+          >
+            Restart
+          </button>
+        </div>
       )}
     </form>
   );

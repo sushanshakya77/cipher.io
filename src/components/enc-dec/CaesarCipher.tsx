@@ -42,15 +42,25 @@ const CaesarCipher: React.FC = () => {
   };
 
   return (
-    <div className="mt-[30px] space-y-6">
-      <Tabs defaultValue="encrypt" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="encrypt">Encryption/Decryption</TabsTrigger>
-          <TabsTrigger value="quiz">Quiz</TabsTrigger>
+    <div className="mt-[30px] space-y-6 bg-slate-600 px-10 py-14  rounded-xl">
+      <Tabs defaultValue="encrypt" className="w-[400px">
+        <TabsList className="grid w-full grid-cols-2 mb-10">
+          <TabsTrigger
+            className="data-[state=active]:bg-slate-500 data-[state=active]:text-slate-100 "
+            value="encrypt"
+          >
+            Encryption/Decryption
+          </TabsTrigger>
+          <TabsTrigger
+            className="data-[state=active]:bg-slate-500 data-[state=active]:text-slate-100 "
+            value="quiz"
+          >
+            Quiz
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="encrypt" className="space-y-6">
           <div className="grid grid-cols-2">
-            <span className="">Input Text:</span>
+            <span className="text-white">Input Text:</span>
             <input
               type="text"
               value={inputText}
@@ -60,7 +70,7 @@ const CaesarCipher: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2">
-            <span className="">Shift:</span>
+            <span className="text-white">Shift:</span>
             <input
               type="number"
               value={shift}
@@ -83,7 +93,7 @@ const CaesarCipher: React.FC = () => {
             </button>
           </div>
           <div className="grid grid-cols-2 items-center">
-            <label>Output Text:</label>
+            <label className="text-white">Output Text:</label>
             <input
               type="text"
               className="bg-green-100 outline-none p-4 rounded-[6px]"
